@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="WebsiteStatisticsDataConnection" ProviderKey="InMemorySetFull">
+      <Parameters>
+        <Parameter Name="database" Value="~\App_Data\WebsiteStatisticsData.xml" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="dataSource1" Name="Data Source 1">
+      <DataProvider DataConnection="WebsiteStatisticsDataConnection">
+        <Selection>
+          <Table Name="Data" Alias="Website Statistics">
+            <Columns>
+              <Column Name="Count" />
+              <Column Name="Date" />
+              <Column Name="TrafficSource" />
+              <Column Name="TrafficSourceDetails" />
+              <Column Name="Browser" />
+              <Column Name="BrowserDetails" />
+            </Columns>
+          </Table>
+          <Filters>
+            <Filter TableName="Website Statistics" FilterString="" />
+          </Filters>
+        </Selection>
+      </DataProvider>
+    </DataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" ShowCaption="false" Group="dashboardItemGroup1" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="Count" UniqueName="DataItem0" />
+        <Dimension DataMember="Date" DateTimeGroupInterval="MonthYear" UniqueName="DataItem1" />
+        <Dimension DataMember="TrafficSource" UniqueName="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension UniqueName="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument UniqueName="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value UniqueName="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <TreeView ComponentName="treeViewDashboardItem1" Name="Traffic Source" Group="dashboardItemGroup1" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="TrafficSource" UniqueName="DataItem0" />
+        <Dimension DataMember="TrafficSourceDetails" UniqueName="DataItem1" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension UniqueName="DataItem0" />
+        <Dimension UniqueName="DataItem1" />
+      </FilterDimensions>
+    </TreeView>
+    <Chart ComponentName="chartDashboardItem2" Name="Chart 2" ShowCaption="false" Group="dashboardItemGroup2" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="Count" UniqueName="DataItem0" />
+        <Dimension DataMember="Date" DateTimeGroupInterval="MonthYear" UniqueName="DataItem1" />
+        <Dimension DataMember="Browser" UniqueName="DataItem2" />
+        <Dimension DataMember="BrowserDetails" UniqueName="DataItem3" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension UniqueName="DataItem2" />
+        <SeriesDimension UniqueName="DataItem3" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument UniqueName="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="SplineArea">
+              <Value UniqueName="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Browser" Group="dashboardItemGroup2" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="Browser" UniqueName="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension UniqueName="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <ListBox ComponentName="listBoxDashboardItem1" Name="Browser Version" Group="dashboardItemGroup2" DataSource="dataSource1">
+      <InteractivityOptions IgnoreMasterFilters="false" />
+      <DataItems>
+        <Dimension DataMember="BrowserDetails" UniqueName="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension UniqueName="DataItem0" />
+      </FilterDimensions>
+    </ListBox>
+  </Items>
+  <Groups>
+    <Group ComponentName="dashboardItemGroup1" Name="Group 1" />
+    <Group ComponentName="dashboardItemGroup2" Name="Group 2" />
+  </Groups>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup DashboardItem="dashboardItemGroup1" Weight="45">
+        <LayoutItem DashboardItem="treeViewDashboardItem1" Weight="24" />
+        <LayoutItem DashboardItem="chartDashboardItem1" Weight="76" />
+      </LayoutGroup>
+      <LayoutGroup DashboardItem="dashboardItemGroup2" Weight="55">
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="33" />
+        <LayoutItem DashboardItem="listBoxDashboardItem1" Weight="33" />
+        <LayoutItem DashboardItem="chartDashboardItem2" Weight="33" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
