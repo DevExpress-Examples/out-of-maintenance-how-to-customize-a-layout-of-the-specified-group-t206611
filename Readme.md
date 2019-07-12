@@ -5,7 +5,7 @@
 <!-- default file list end -->
 # How to customize a layout of the specified group
 <!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/t206611)**
+**[[Run Online]](https://codecentral.devexpress.com/t206611/)**
 <!-- run online end -->
 
 
